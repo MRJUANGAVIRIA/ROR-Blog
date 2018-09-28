@@ -9,12 +9,20 @@
     <tr class="table-secondary">
         <th> Titulo </th>
         <th> Body</th>
+        <th> Categorias </th>
         <th> Enlaces </th>
     </tr>
     <% @articles.each do |x| %>
         <tr class="table-secondary">
             <td> <a href="/articles/<%= x.id %>"><%= x.title %></a></td>
-            <td> <%= x.body %> </td>
+            <td> <%= truncate(x.body, length: 75)%> </td>
+            <td>
+                <% temporal = " " %>
+                <% x.categories.each do |y| %>
+                    <% temporal = temporal + y.name + " " %>
+                <% end %>
+                <p> <%= temporal %> </p>
+            </td>
             <td>
                 <% if user_signed_in? %>
                     <% if current_user.is_editor? %>

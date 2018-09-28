@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
     include PermissionsConcern
     has_many :has_categories
-    has_many :has_categories, through: :has_categories
+    has_many :categories, through: :has_categories
     after_create :save_categories
     belongs_to :user
     validates :title, uniqueness: true

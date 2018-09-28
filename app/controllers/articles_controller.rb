@@ -9,18 +9,23 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = current_user.articles.new(article_params) #crea el articulo relacionado al usuario que esta logueado
-    @article.categories = params[:categories]
-    #raise @article.to_yaml
-    respond_to do |format|
-        #raise params.to_yaml Sirve para verificar que esta llegando por parametros
-        if @article.save
-            format.html {redirect_to articles_path, notice: "Articulo Creado"}
-            format.json {render :show, status: :created, location: @article}
-        else
-            format.html { render :new }
-            format.json {render json: @article.errors, status: :unprocessable_entity}
-        end
+    #raise params[:categories].nil?.to_yaml
+    if params[:categories].nil?
+      redirect_to new_article_path, alert: "Necesitas agregar mínimo una categoria"
+    else
+      @article = current_user.articles.new(article_params) #crea el articulo relacionado al usuario que esta logueado
+      @article.categories = params[:categories]
+      #raise @article.to_yaml
+      respond_to do |format|
+          #raise params.to_yaml Sirve para verificar que esta llegando por parametros
+          if @article.save
+              format.html {redirect_to articles_path, notice: "Articulo Creado"}
+              format.json {render :show, status: :created, location: @article}
+          else
+              format.html { render :new }
+              format.json {render json: @article.errors, status: :unprocessable_entity}
+          end
+      end
     end
    end
 
