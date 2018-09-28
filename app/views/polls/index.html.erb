@@ -1,0 +1,18 @@
+<h1>Todos los articulos</h1>
+
+<table border = "1">
+    <tr>
+        <th> Titulo </th>
+        <th> Votos Si </th>
+        <th> Votos No </th>
+        <th> Enlaces  </th>
+    </tr>
+    <% @polls.each do |x| %>
+    <tr>
+        <td> <%= x.title %> </td>
+        <td> <%= x.vote_yes%> </td>
+        <td> <%= x.votes_no%> </td>
+        <td> <%= link_to "Mostrar", edit_poll_path(x) %> </td>
+    </tr>
+    <% end %>
+</table>

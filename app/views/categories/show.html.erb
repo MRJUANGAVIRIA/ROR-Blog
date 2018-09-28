@@ -1,0 +1,33 @@
+<style type="text/css" media="screen">
+    .jumbotron{
+        background-color: <%= @category.color %> !important;
+    }
+
+</style>
+<div class="jumbotron">
+    <p>
+      <strong>Name:</strong>
+      <%= @category.name %>
+    </p>
+
+    <p>
+      <strong>Color:</strong>
+      <%= @category.color %>
+    </p>
+
+    <p>
+      <%= category.articles %>
+    </p>
+
+    <% if !@category.user.nil? %>
+        <h2>Create by:</h2>
+        <h3> <%= @category.user.email %> </h3>
+    <% end %>
+
+    <% if user_signed_in? %>
+      <% if current_user.is_editor? %>
+        <%= link_to 'Edit', edit_category_path(@category) %> |
+      <% end %>
+    <% end %>
+    <%= link_to 'Back', categories_path %>
+</div>

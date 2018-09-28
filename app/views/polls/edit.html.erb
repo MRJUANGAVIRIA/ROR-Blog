@@ -1,0 +1,31 @@
+<h1> Encuesta </h1>
+
+<%=  @poll.vote_yes += 1  %>
+
+<%= form_with(model: @poll) do |p| %>
+
+    <p>
+    <%= p.label "Titulo" %>
+    <%= p.text_field :title%>
+    </p>
+
+    <p>
+    <%= p.label "Votos Si" %>
+    <%= p.text_area :vote_yes %>
+    </p>
+
+
+    <p>
+    <%= p.label "Votos No" %>
+    <%= p.text_area :votes_no%>
+    </p>
+
+
+
+    <p>
+    <%= p.submit "Guardar" %>
+    </p>
+
+<% end  %>
+
+<script>

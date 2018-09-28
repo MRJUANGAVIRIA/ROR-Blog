@@ -1,0 +1,9 @@
+<div class="jumbotron">
+    <h1> <%= @article.title %> </h1>
+    <h2> <%= @article.body %> </h2>
+    <% if !@article.user.nil? %>
+        <h2> <%= @article.user.email %> </h2>
+    <% end %>
+    <%= link_to "Home", articles_path, class:"btn btn-primary" %>
+    <%= link_to "Editar", edit_article_path(@article.id), class:"btn btn-primary"%>
+</div>

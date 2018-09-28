@@ -1,0 +1,45 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="jumbotron space-a">
+                <fieldset>
+                    <legend class="offset-md-1"><%= "#{titulo}"  %></legend>
+                        <%= form_with(model: article, local: true) do |form| %>
+                          <% if article.errors.any? %>
+                            <div id="error_explanation">
+                              <h2><%= pluralize(article.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+                              <ul>
+                              <% article.errors.full_messages.each do |message| %>
+                                <li><%= message %></li>
+                              <% end %>
+                              </ul>
+                            </div>
+                          <% end %>
+
+                          <div class="form-group">
+                            <%= form.label :title, class:"offset-md-1 col-sm-2 col-form-label" %>
+                            <%= form.text_field :title , class:"offset-md-1 form-control col-sm-6"%>
+                          </div>
+
+                          <div class="form-group">
+                            <%= form.label :body, class:"offset-md-1 col-sm-2 col-form-label" %>
+                            <%= form.text_field :body, class:"offset-md-1 form-control col-sm-6" %>
+                          </div>
+                          <div class="chek-c">
+                              <% Category.all.each do |category| %>
+                                <%= check_box_tag "categories[]" , category.id %> <%= category.name %><br>
+                              <% end %>
+                          </div>
+                          <div class="form-group">
+                            <%= form.submit class:" offset-md-1 btn btn-primary" %>
+                            <%= link_to "Atras", articles_path , class:" offset-md-1 btn btn-primary" %>
+                          </div>
+                        <% end %>
+                 </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+
