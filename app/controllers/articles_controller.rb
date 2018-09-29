@@ -48,16 +48,18 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
+    @article.destroy
     respond_to do |format|
-        if @article.delete
-            format.html {redirect_to articles_path, notice: "Articulo Eliminado"}
-            format.json {head :no_content}
-        end
+      format.html {redirect_to articles_path, notice: "Articulo Eliminado"}
+      format.json {head :no_content}
     end
   end
 
   def index
     @articles =  Article.all
+    if user_signed_in? && current_user.is_editor? && !params.has_key?(:normal)
+      render :"admin_article"
+    end
   end
 
   private
