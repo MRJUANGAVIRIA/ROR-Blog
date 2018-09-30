@@ -1,30 +1,33 @@
 <div class="jumbotron">
     <h1>Administrador</h1>
-    <p><%= link_to "Vista Normal", articles_path(normal:true), class:"btn btn-success" %></p>
+    <p>
+      <%= link_to "Vista Normal", articles_path(normal: true), class:"btn btn-success" %>
+      <%= link_to "Crear Nuevo Articulo", new_article_path , class:"btn btn-success" %>
+    </p>
     <table class="table">
         <thead class="thead-light">
             <tr>
-                <th>Titulo</th>
-                <th>Cuerpo</th>
-                <th>Autor</th>
-                <th>Fecha Creación</th>
-                <th>Enlaces</th>
+              <th>Titulo</th>
+              <th>Cuerpo</th>
+              <th>Autor</th>
+              <th>Fecha Creación</th>
+              <th>Enlaces</th>
 
             </tr>
         </thead>
         <tbody>
             <% @articles.each do |art| %>
-            <tr>
+              <tr>
                 <td> <%= truncate(art.title, length:15) %> </td>
                 <td> <%= truncate(art.body, length:50) %> </td>
                 <td> <%= art.user.email%> </td>
-                <td> <%= truncate(art.created_at.to_s, length:22)%> </td>
+                <td> <%= art.created_at.strftime("%d/%b/%Y %H:%M")%> </td>
                 <td>
-                    <%= link_to "Ver", art  %>
-                    <%= link_to "Editar", edit_article_path(art) %>
-                    <%= link_to "Eliminar", art, method: :delete, data:{confirm: "Desea Eliminar?"} %>
+                  <%= link_to "Ver", art  %>
+                  <%= link_to "Editar", edit_article_path(art) %>
+                  <%= link_to "Eliminar", art, method: :delete, data:{confirm: "Desea Eliminar?"} %>
                 </td>
-            </tr>
+              </tr>
             <% end %>
         </tbody>
     </table>

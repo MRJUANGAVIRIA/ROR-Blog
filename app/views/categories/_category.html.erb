@@ -1,16 +1,15 @@
 <style type="text/css" media="screen">
-    <%= ".#{category.name}" %>{
-        background-color: <%= category.color %> !important;
-    }
-
+  <%= ".#{category.name}" %>{
+    background-color: <%= category.color %> !important;
+  }
 </style>
 
 <div class="col-md-3">
-    <div class="jumbotron <%= "#{category.name}" %> ">
-        <h2><%= category.name %></h2>
-        <p>
-            <%= "Contiene #{category.articles.count} articulos" %>
-        </p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos ratione dolorem magnam molestiae soluta aut ut possimus, quidem placeat temporibus optio maiores eaque dolor minima porro itaque non. Ut, asperiores.</p>
-    </div>
+  <div class="jumbotron <%= "#{category.name}" %> ">
+    <h2><%= category.name %></h2>
+    <p>
+        <%= "Contiene #{category.articles.count} articulos" %>
+    </p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos ratione dolorem magnam molestiae soluta aut ut possimus, quidem placeat temporibus optio maiores eaque dolor minima porro itaque non. Ut, asperiores.</p>
+  </div>
 </div>

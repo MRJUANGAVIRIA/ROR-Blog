@@ -1,0 +1,11 @@
+<div class="row">
+    <% @articles.each do |art| %>
+      <div class="col-md-4">
+          <div class="jumbotron ">
+            <h1><%= art.title%></h1>
+            <p> <%= art.body %></p>
+            <p><%= link_to "Ver más", art, class: " btn btn-success" %></p>
+          </div>
+      </div>
+    <% end %>
+</div>

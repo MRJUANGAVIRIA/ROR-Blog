@@ -1,24 +1,21 @@
 <h1>Nuevo Encuestas</h1>
-
 <%= form_with(model: @poll) do |p| %>
-
-    <p>
+  <p>
     <%= p.label "Titulo" %>
     <%= p.text_field :title%>
-    </p>
+  </p>
 
-    <p>
+  <p>
     <%= p.label "Votos Si" %>
     <%= p.text_field :vote_yes%>
-    </p>
+  </p>
 
-    <p>
+  <p>
     <%= p.label "Votos No" %>
     <%= p.text_field :votes_no%>
-    </p>
+  </p>
 
-    <p>
+  <p>
     <%= p.submit "Nuevo" %>
-    </p>
-
+  </p>
 <% end  %>

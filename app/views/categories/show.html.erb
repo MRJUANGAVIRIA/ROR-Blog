@@ -1,9 +1,9 @@
 <style type="text/css" media="screen">
-    .jumbotron{
-      background-color: <%= @category.color %> !important;
-    }
-
+  .jumbotron{
+    background-color: <%= @category.color %> !important;
+  }
 </style>
+
 <div class="categories-show">
   <h1>
     <strong>Name:</strong>
@@ -16,26 +16,27 @@
   <% end %>
 
   <% if user_signed_in? %>
-          <% if current_user.is_editor? %>
-            <%= link_to 'Edit', edit_category_path(@category) %> |
-          <% end %>
-        <% end %>
+    <% if current_user.is_editor? %>
+      <%= link_to 'Edit', edit_category_path(@category) %> |
+    <% end %>
+  <% end %>
   <%= link_to 'Back', categories_path %>
 </div>
+
 <div class="row">
   <% @category.articles.each do |article| %>
     <div class="col-md-3">
       <div class="jumbotron">
-          <h3>
-            <%= article.title %> <br>
-          </h3>
-          <p>
-            <%= truncate(article.body, length:100) %> <br>
-          </p>
-          <%= link_to 'Ver más', article, class:"btn btn-info" %>
-          <% if current_user.is_editor? %>
-            <%= link_to 'Editar', edit_article_path(article), class:"btn btn-success" %>
-          <%end %>
+        <h3>
+          <%= article.title %> <br>
+        </h3>
+        <p>
+          <%= truncate(article.body, length:100) %> <br>
+        </p>
+        <%= link_to 'Ver más', article, class:"btn btn-info" %>
+        <% if current_user.is_editor? %>
+          <%= link_to 'Editar', edit_article_path(article), class:"btn btn-success" %>
+        <%end %>
       </div>
     </div>
   <% end %>

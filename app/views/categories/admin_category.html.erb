@@ -1,0 +1,32 @@
+<div class="jumbotron">
+    <h1>Administrador</h1>
+    <p>
+      <%= link_to "Vista Normal", categories_path(normal:true), class:"btn btn-success" %>
+      <%= link_to "Crear Nueva Category", new_category_path , class:"btn btn-success" %>
+    </p>
+    <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>Titulo</th>
+            <th>Autor</th>
+            <th>Fecha Creación</th>
+            <th>Enlaces</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @categories.each do |cat| %>
+            <tr>
+              <td> <%= truncate(cat.name, length:15) %> </td>
+              <td> <%= cat.user.email%> </td>
+              <td> <%= cat.created_at.strftime("%d/%b/%Y %H:%M")%> </td>
+              <td>
+                <%= link_to "Ver", cat  %>
+                <%= link_to "Editar", edit_category_path(cat) %>
+                <%= link_to "Eliminar", cat, method: :delete, data:{confirm: "Desea Eliminar?"} %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+</div>

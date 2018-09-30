@@ -7,30 +7,30 @@
 <div class="container">
 <table border = "1" class="table table-hover">
     <tr class="table-secondary">
-        <th> Titulo </th>
-        <th> Body</th>
-        <th> Categorias </th>
-        <th> Enlaces </th>
+      <th> Titulo </th>
+      <th> Body</th>
+      <th> Categorias </th>
+      <th> Enlaces </th>
     </tr>
     <% @articles.each do |x| %>
         <tr class="table-secondary">
             <td> <a href="/articles/<%= x.id %>"><%= x.title %></a></td>
             <td> <%= truncate(x.body, length: 75)%> </td>
             <td>
-                <% temporal = " " %>
-                <% x.categories.each do |y| %>
-                    <% temporal = temporal + y.name + " " %>
-                <% end %>
-                <p> <%= temporal %> </p>
+              <% temporal = " " %>
+              <% x.categories.each do |y| %>
+                  <% temporal = temporal + y.name + " " %>
+              <% end %>
+              <p> <%= temporal %> </p>
             </td>
             <td>
                 <% if user_signed_in? %>
-                    <% if current_user.is_editor? %>
-                        <%= link_to "Editar", edit_article_path(x), class:"btn btn-outline-success"%>
-                    <% end %>
-                    <% if current_user.is_admin? %>
-                        <%= link_to "Borrar", x, method: :delete , data: {confirm: "Esta seguro?"}, class:"btn btn-outline-danger" %>
-                    <% end %>
+                  <% if current_user.is_editor? %>
+                    <%= link_to "Editar", edit_article_path(x), class:"btn btn-outline-success"%>
+                  <% end %>
+                  <% if current_user.is_admin? %>
+                    <%= link_to "Borrar", x, method: :delete , data: {confirm: "Esta seguro?"}, class:"btn btn-outline-danger" %>
+                  <% end %>
                 <% end %>
             </td>
         </tr>

@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-6 offset-md-2">
+    <div class="jumbotron ">
+        <legend class="text-center"> <h1>Iniciar Sesión</h1> </legend>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field offset-md-1 submit-bot">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+
+          <div class="field offset-md-1 submit-bot">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "current-password" %>
+          </div>
+
+          <% if devise_mapping.rememberable? -%>
+            <div class="field offset-md-1 submit-bot">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end -%>
+
+          <div class="actions offset-md-1 submit-bot">
+            <%= f.submit "Log in", class:"btn btn-primary" %>
+          </div>
+        <% end %>
+        <div class="actions offset-md-1 submit-bot">
+          <%= render "users/shared/links" %>
+        </div>
+    </div>
+  </div>
+</div>
