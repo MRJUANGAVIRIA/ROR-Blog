@@ -28,9 +28,9 @@ class ArticlesController < ApplicationController
     if params[:categories].nil?
       redirect_to new_article_path, alert: "Necesitas agregar mínimo una categoria"
     else
+      #raise @article.to_yaml
       @article = current_user.articles.new(article_params) #crea el articulo relacionado al usuario que esta logueado
       @article.categories = Category.where(id: params[:categories])
-      #raise @article.to_yaml
       respond_to do |format|
         #raise params.to_yaml Sirve para verificar que esta llegando por parametros
         if @article.save
@@ -80,7 +80,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :body, :categories)
+    params.require(:article).permit(:title, :body, :categories, :img_art)
   end
 
   def set_article
@@ -92,3 +92,7 @@ class ArticlesController < ApplicationController
   end
 
 end
+
+
+
+

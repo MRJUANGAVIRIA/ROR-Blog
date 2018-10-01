@@ -1,9 +1,16 @@
 <div class="jumbotron">
-    <h1> <%= @article.title %> </h1>
-    <h2> <%= @article.body %> </h2>
-    <% if !@article.user.nil? %>
-      <h2> <%= @article.user.email %> </h2>
-    <% end %>
-    <%= link_to "Home", articles_path, class:"btn btn-primary" %>
-    <%= link_to "Editar", edit_article_path(@article.id), class:"btn btn-primary"%>
+  <h1> <%= @article.title %> </h1>
+  <h2> <%= @article.body %> </h2>
+  <% if !@article.user.nil? %>
+    <h2> <%= @article.user.email %> </h2>
+  <% end %>
+  <div class="container-fluid">
+    <div class="submit-bot">
+      <picture class="submit-bot">
+        <%= image_tag @article.img_art.url(:big), class:"img-fluid", alt:"Responsive image" %>
+      </picture>
+    </div>
+  </div>
+  <%= link_to "Home", articles_path, class:"btn btn-primary" %>
+  <%= link_to "Editar", edit_article_path(@article.id), class:"btn btn-primary"%>
 </div>

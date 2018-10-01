@@ -1,21 +1,33 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
   <div class="collapse navbar-collapse" id="navbarColor01">
+
     <ul class="navbar-nav mr-auto">
+
       <li class="nav-item">
         <%= link_to "Inicio", root_path, class: "nav-link" %>
       </li>
+
       <li class="nav-item">
         <%= link_to "Votaciones", polls_path, class: "nav-link" %>
       </li>
+
       <li class="nav-item">
         <%= link_to "Categorias", categories_path, class: "nav-link" %>
       </li>
+
       <li class="nav-item">
         <%= link_to "Articulos", articles_path, class: "nav-link" %>
       </li>
+
       <li class="nav-item">
         <%= link_to "Contacto", new_contact_path, class: "nav-link" %>
       </li>
+
       <% if user_signed_in?%>
         <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "nav-link" %>
       <% else %>
@@ -23,6 +35,7 @@
         <%= link_to "Registrarse", new_user_registration_path, class: "nav-link" %>
       <% end %>
     </ul>
+
     <%= form_tag articles_search_path, :method => 'get', class:"form-inline my-2 my-lg-0" do %>
       <%= text_field_tag :search, params[:search], class:"form-control mr-sm-2" %>
       <%= submit_tag "Search", :name => nil, class:"btn btn-secondary my-2 my-sm-0"%>

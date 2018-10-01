@@ -1,9 +1,10 @@
 <div class="jumbotron">
-    <h1>Administrador</h1>
-    <p>
-      <%= link_to "Vista Normal", categories_path(normal:true), class:"btn btn-success" %>
-      <%= link_to "Crear Nueva Category", new_category_path , class:"btn btn-success" %>
-    </p>
+  <h1>Administrador</h1>
+  <p>
+    <%= link_to "Vista Normal", categories_path(normal:true), class:"btn btn-success" %>
+    <%= link_to "Crear Nueva Category", new_category_path , class:"btn btn-success" %>
+  </p>
+  <div class="table-responsive">
     <table class="table">
         <thead class="thead-light">
           <tr>
@@ -29,4 +30,5 @@
           <% end %>
         </tbody>
     </table>
+  </div>
 </div>

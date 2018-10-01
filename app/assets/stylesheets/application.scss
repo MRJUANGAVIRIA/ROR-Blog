@@ -11,6 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require trix
  *= require_self
  */
 $title: #000;
@@ -64,3 +65,4 @@ nav {
 //     font-size: 60px !important;
 //     color: black;
 // }
+
