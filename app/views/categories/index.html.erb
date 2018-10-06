@@ -1,3 +1,8 @@
 <div class="row">
   <%= render @categories %>
+  <div class="container">
+    <div class="flickr_pagination text-center" style="margin-top: 20px; margin-bottom: 20px">
+      <%= will_paginate @articles %>
+    </div>
+   </div>
 </div>

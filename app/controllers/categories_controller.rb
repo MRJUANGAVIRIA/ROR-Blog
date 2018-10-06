@@ -6,12 +6,11 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    @categories = Category.paginate(:page => params[:page], :per_page => 4)
     if user_signed_in? && current_user.is_editor? && !params.has_key?(:normal)
       render :"admin_category"
     end
   end
-
   # GET /categories/1
   # GET /categories/1.json
   def show
@@ -67,13 +66,17 @@ class CategoriesController < ApplicationController
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_category
+  # Use callbacks to share common setup or constraints between actions.
+  def set_category
+    begin
       @category = Category.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_path, alert: "No existe esa categoria"
     end
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def category_params
-      params.require(:category).permit(:name, :color)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def category_params
+    params.require(:category).permit(:name, :color)
+  end
 end

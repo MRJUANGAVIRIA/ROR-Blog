@@ -2,15 +2,49 @@
   <h1> <%= @article.title %> </h1>
   <h2> <%= @article.body %> </h2>
   <% if !@article.user.nil? %>
-    <h2> <%= @article.user.email %> </h2>
+    <h2> By: <%= @article.user.email %> </h2>
   <% end %>
-  <div class="container-fluid">
-    <div class="submit-bot">
-      <picture class="submit-bot">
-        <%= image_tag @article.img_art.url(:big), class:"img-fluid", alt:"Responsive image" %>
-      </picture>
-    </div>
+  <div class="alert alert-dark" role="alert">
+    <h1> <span class="badge badge-primary">Categorias:</span>
+      <% @article.categories.each do |category| %>
+        <span class="badge badge-secondary">
+          <%= link_to category.name, category, style:"color: white" %>
+        </span>
+      <% end %>
+    </h1>
   </div>
-  <%= link_to "Home", articles_path, class:"btn btn-primary" %>
-  <%= link_to "Editar", edit_article_path(@article.id), class:"btn btn-primary"%>
+  <div class="row">
+    <div class="submit-bot edit-bot">
+      <% if user_signed_in? && current_user.is_editor?%>
+        <%= link_to "Editar", edit_article_path(@article.id), class:"btn btn-primary"%>
+      <% end %>
+      <%= link_to "Home", articles_path, class:"btn btn-primary" %>
+    </div>
+    <div class="col-md-12">
+        <div class="text-center"></div>
+          <%= image_tag @article.img_art.url(:big), class:"img-fluid", alt:"Responsive image" %>
+        </div>
+    </div>
+    <% if user_signed_in?%>
+      <div class="submit-bot">
+        <%= render "comments/form", comment: @comment %>
+      </div>
+    <% end %>
+    <% @article.comments.each do |comment| %>
+      <p>
+        <span class="badge badge-primary"> <%= comment.body %> </span>
+        <span class="badge badge-success"> By: </span>
+        <span class="badge badge-dark">  <%= comment.user.email%> </span>
+        <% if user_signed_in? && current_user == comment.user %>
+          <button type="button" class="btn btn-outline-primary">
+            <%= link_to "Editar", edit_article_comment_url(@article,comment)%>
+          </button>
+          <button type="button" class="btn btn-outline-danger">
+          <%= link_to "Eliminar", [@article,comment],  method: :delete, data:{confirm: "¿Estas Seguro?"}%>
+          </button>
+        <% end %>
+      </p>
+    <% end %>
+  </div>
 </div>
+

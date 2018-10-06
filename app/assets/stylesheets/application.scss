@@ -21,46 +21,95 @@ $color-b: #ffdfdf;
 $color-c: #fff6f6;
 $color-d: #aedefc;
 $colors : (
-    jumbotrom:#2e456b,
-    title: $title,
-    fondo: $fondo,
-    color-a:$color-a,
-    color-b:$color-b,
-    color-c:$color-c,
-    color-d:$color-d
+  jumbotrom:#2e456b,
+  title: $title,
+  fondo: $fondo,
+  color-a:$color-a,
+  color-b:$color-b,
+  color-c:$color-c,
+  color-d:$color-d
 );
 
 body{
     background-color: #474a56;
 }
 @each $color_name,$color in $colors{
-    .#{$color-name}{
-        background-color: $color !important;
-    }
-    .#{$color-name}-text{
-        color: $color !important;
-    }
+  .#{$color-name}{
+    background-color: $color !important;
+  }
+  .#{$color-name}-text{
+    color: $color !important;
+  }
 
 }
 .space-a {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 nav {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 .chek-c{
-    margin-left: 40px;
-    margin-bottom: 10px;
+  margin-left: 40px;
+  margin-bottom: 10px;
 }
 .categories-show{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 .submit-bot{
-    margin-top: 10px;
-    margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
+.edit-bot{
+  margin-left: 20px;
+}
+.pagination {
+  justify-content: center;
+}
+
+.flickr_pagination {
+  justify-content: center;
+  text-align: center;
+  padding: 0.3em;
+  cursor: default;
+}
+.flickr_pagination a, .flickr_pagination span, .flickr_pagination em {
+  padding: 0.2em 0.5em;
+}
+.flickr_pagination .disabled {
+  color: #aaaaaa;
+}
+.flickr_pagination .current {
+  font-style: normal;
+  font-weight: bold;
+  color: #000000;
+}
+.flickr_pagination a {
+  border: 1px solid #dddddd;
+  color: #0063dc;
+  text-decoration: none;
+}
+.flickr_pagination a:hover, .flickr_pagination a:focus {
+  border-color: #003366;
+  background: #0063dc;
+  color: white;
+  }
+.flickr_pagination .page_info {
+  color: #aaaaaa;
+
+  padding-top: 0.8em;
+ }
+.flickr_pagination .previous_page, .flickr_pagination .next_page {
+  border-width: 2px;
+}
+.flickr_pagination .previous_page {
+  margin-right: 1em;
+}
+.flickr_pagination .next_page {
+  margin-left: 1em;
+}
+
 // .search-title:hover { funcionalidad chevere
 //     font-size: 60px !important;
 //     color: black;

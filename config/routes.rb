@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     passwords: "users/passwords"
   }
   resources :categories
-  resources :articles
+  resources :articles do
+    resources :comments
+  end
   resources :polls
   post "contacs/new"
   get 'welcome/contacto'

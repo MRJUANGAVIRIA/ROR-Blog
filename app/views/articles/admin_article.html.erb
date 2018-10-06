@@ -1,34 +1,39 @@
 <div class="jumbotron">
-    <h1>Administrador</h1>
-    <p>
-      <%= link_to "Vista Normal", articles_path(normal: true), class:"btn btn-success" %>
-      <%= link_to "Crear Nuevo Articulo", new_article_path , class:"btn btn-success" %>
-    </p>
-    <table class="table table-responsive">
-        <thead class="thead-light">
-            <tr>
-              <th>Titulo</th>
-              <th>Cuerpo</th>
-              <th>Autor</th>
-              <th>Fecha Creación</th>
-              <th>Enlaces</th>
+  <h1>Administrador</h1>
+  <p>
+    <%= link_to "Vista Normal", articles_path(normal: true), class:"btn btn-success" %>
+    <%= link_to "Crear Nuevo Articulo", new_article_path , class:"btn btn-success" %>
+  </p>
+  <table class="table table-responsive">
+      <thead class="thead-light">
+          <tr>
+            <th>Titulo</th>
+            <th>Cuerpo</th>
+            <th>Autor</th>
+            <th>Fecha Creación</th>
+            <th>Enlaces</th>
 
+          </tr>
+      </thead>
+      <tbody>
+          <% @articles.each do |art| %>
+            <tr>
+              <td> <%= truncate(art.title, length:15) %> </td>
+              <td> <%= truncate(art.body, length:50) %> </td>
+              <td> <%= art.user.email%> </td>
+              <td> <%= art.created_at.strftime("%d/%b/%Y %H:%M")%> </td>
+              <td>
+                <%= link_to "Ver", art  %>
+                <%= link_to "Editar", edit_article_path(art) %>
+                <%= link_to "Eliminar", art, method: :delete, data:{confirm: "Desea Eliminar?"} %>
+              </td>
             </tr>
-        </thead>
-        <tbody>
-            <% @articles.each do |art| %>
-              <tr>
-                <td> <%= truncate(art.title, length:15) %> </td>
-                <td> <%= truncate(art.body, length:50) %> </td>
-                <td> <%= art.user.email%> </td>
-                <td> <%= art.created_at.strftime("%d/%b/%Y %H:%M")%> </td>
-                <td>
-                  <%= link_to "Ver", art  %>
-                  <%= link_to "Editar", edit_article_path(art) %>
-                  <%= link_to "Eliminar", art, method: :delete, data:{confirm: "Desea Eliminar?"} %>
-                </td>
-              </tr>
-            <% end %>
-        </tbody>
-    </table>
+          <% end %>
+      </tbody>
+  </table>
+  <div class="container">
+    <div class="flickr_pagination" style="margin-top: 20px; margin-bottom: 20px">
+      <%= will_paginate @articles %>
+    </div>
+  </div>
 </div>

@@ -2,6 +2,7 @@ class Article < ApplicationRecord
   include PermissionsConcern
   has_many :has_categories , dependent: :destroy
   has_many :categories, through: :has_categories , dependent: :destroy
+  has_many :comments
   #after_create :save_categories
   #after_update :save_categories
   belongs_to :user

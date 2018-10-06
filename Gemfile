@@ -6,6 +6,9 @@ ruby '2.5.1'
 #Gem imagenes
 gem "paperclip", "~> 6.0.0"
 
+#Paginador
+gem 'will_paginate', '~> 3.1.6'
+
 gem 'trix'
 
 #gem for users

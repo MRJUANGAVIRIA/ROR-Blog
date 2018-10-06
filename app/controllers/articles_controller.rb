@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_action :authenticate_editor!, only: [:edit, :update, :new, :create]
   before_action :authenticate_admin!, only: [:destroy]
   def index
-    @articles =  Article.last_last
+    @articles =  Article.paginate(:page => params[:page], :per_page => 5).last_last
     if user_signed_in? && current_user.is_editor? && !params.has_key?(:normal) #params.has_key? sirve para ir a la vista normal del index si el admin lo desea
       render :"admin_article"
     end
@@ -45,6 +45,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
   end
 
   def edit
@@ -84,7 +85,11 @@ class ArticlesController < ApplicationController
   end
 
   def set_article
-    @article = Article.find(params[:id])
+    begin
+      @article = Article.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_path, alert: "No existe ese articulo"
+    end
   end
 
   def imprimir

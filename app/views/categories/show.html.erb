@@ -34,9 +34,11 @@
           <%= truncate(article.body, length:100) %> <br>
         </p>
         <%= link_to 'Ver más', article, class:"btn btn-info" %>
-        <% if current_user.is_editor? %>
-          <%= link_to 'Editar', edit_article_path(article), class:"btn btn-success" %>
-        <%end %>
+        <% if user_signed_in? %>
+          <% if current_user.is_editor? %>
+            <%= link_to 'Editar', edit_article_path(article), class:"btn btn-success" %>
+          <%end %>
+        <% end %>
       </div>
     </div>
   <% end %>
